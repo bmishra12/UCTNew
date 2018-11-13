@@ -1,0 +1,94 @@
+﻿@model UCT.Models.ProgramLearningActivity
+
+@{
+    ViewBag.Title = "Map Learning Activity to Program";
+}
+
+<h2>Map Learning Activity to Program </h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Program Learning Activity</legend>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.ProgramLearningActivitiesID)
+        </div>*@
+        @*<div class="editor-field">
+            @Html.EditorFor(model => model.ProgramLearningActivitiesID)
+            @Html.ValidationMessageFor(model => model.ProgramLearningActivitiesID)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProgramID, "Program")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ProgramID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ProgramID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LearningActivitiesID, "LearningActivity")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("LearningActivitiesID", String.Empty)
+            @Html.ValidationMessageFor(model => model.LearningActivitiesID)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.CreatedBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedBy)
+            @Html.ValidationMessageFor(model => model.CreatedBy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreatedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedDate)
+            @Html.ValidationMessageFor(model => model.CreatedDate)
+        </div>*@
+
+        @*<div class="editor-field">
+            <table>
+                <tr>
+                    @{
+                    int cnt = 0;
+                    var competencys = ViewBag.Competencys;
+
+                    foreach (var competency in competencys)
+                    {
+                        if (cnt++ % 3 == 0)
+                        {
+                            @: </tr> <tr>
+                         }
+                            @: <td>
+                                <input type="checkbox"
+                                        name="selectedCompetencys"
+                                        value="@competency.CompetenciesID"
+                                        @(Html.Raw(competency.Assigned ? "checked=\"checked\"" : "")) />
+                                @competency.CompetenciesID @:  @competency.Description
+                                @: </td>
+                      }
+                             @:</tr>
+                    }
+                </table>
+            </div>*@
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<UCT.Models.Program>
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>Program Report</h2>
+
+<table>
+    <tr>
+        <th>
+            Program Name
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+              
+                @Html.ActionLink("Report for this program", "Report", new { id = item.ProgramID })
+            </td>
+        </tr>
+    }
+
+</table>

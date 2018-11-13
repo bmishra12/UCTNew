@@ -1,0 +1,73 @@
+﻿@model System.Data.DataTable
+@using System.Data; 
+
+@{
+    ViewBag.Title = "Report Details";
+}
+
+<h2>Report Details</h2>
+
+<table>
+    <thead>
+        <tr>
+@if (Model.Rows.Count > 0){
+            foreach (DataColumn col in Model.Columns)
+            {
+
+                if (@col.ColumnName.ToString() == "LearningActivity")
+                    {
+                        <th>&nbsp;</th>
+                    }
+                    else
+                { 
+                <th>@col.ColumnName</th>
+                }
+            }
+}
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Rows.Count > 0){
+            
+        foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+                @foreach (DataColumn col in Model.Columns)
+                {
+                   if (row[col.ColumnName].ToString().Contains("."))
+                    {
+                        <td>X</td>
+                    }
+                    else
+                    if  (row[col.ColumnName].ToString().Contains ("0"))
+                    {
+                        <td>&nbsp;</td>
+                    }
+                    
+                    else
+                    {
+                        
+                    <td>@row[col.ColumnName]</td>    
+                        
+                    }
+
+                }
+            </tr>
+        }
+            
+        }
+        else
+        { 
+          <tr>
+               
+                
+                    <td><b>Activity for this program has not been defined yet</b></td>
+               
+            </tr>  
+        }
+    </tbody>
+</table>
+<p>
+    
+    @Html.ActionLink("Back to List", "Index")
+</p>

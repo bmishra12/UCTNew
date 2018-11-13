@@ -1,0 +1,57 @@
+﻿@model IEnumerable<UCT.Models.Competency>
+
+@{
+    ViewBag.Title = "Competencies";
+}
+
+<h2>Competencies</h2>
+
+<p>
+    @Html.ActionLink("Create New Competency", "Create")
+</p>
+<table>
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CompetenciesID)
+        </th>*@
+        <th>
+           Competency &nbsp; &nbsp;
+        </th>
+        <th>
+           Description
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CompetenciesID)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Competency1) &nbsp; &nbsp;
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.CompetenciesID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.CompetenciesID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.CompetenciesID })
+        </td>
+    </tr>
+}
+
+</table>

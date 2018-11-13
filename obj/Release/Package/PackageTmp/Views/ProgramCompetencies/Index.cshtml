@@ -1,0 +1,59 @@
+﻿@model IEnumerable<UCT.Models.ProgramLearningActivity>
+
+@{
+    ViewBag.Title = "Learning Activities Competencies";
+}
+
+<h2>Learning Activity Competencies</h2>
+<p> Use this page to add Competencies to Learning Activities </p>
+
+@*<p>
+    @Html.ActionLink("Add Competencies to a Learning Activity", "Create")
+</p>*@
+<table>
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.ProgramLearningActivitiesID)
+            </th>*@
+        <th>
+            Program
+        </th>
+        <th>
+           Learning Activity
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ProgramLearningActivitiesID)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Program.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LearningActivity.Description)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProgramLearningActivitiesID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProgramLearningActivitiesID }) 
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.ProgramLearningActivitiesID })*@
+            </td>
+        </tr>
+    }
+
+</table>

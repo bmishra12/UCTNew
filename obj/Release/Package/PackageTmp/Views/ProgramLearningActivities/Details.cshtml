@@ -1,0 +1,77 @@
+﻿@model UCT.Models.ProgramLearningActivity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details Program LearningActivity </h2>
+
+<fieldset>
+    <legend>Program LearningActivity</legend>
+
+    <div class="display-label">
+        <b>     @Html.DisplayNameFor(model => model.ProgramLearningActivitiesID) </b>
+</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProgramLearningActivitiesID)
+    </div>
+
+    <div class="display-label">
+        <b>      Program  </b>
+</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Program.Description)
+    </div>
+
+    <div class="display-label">
+        <b>     LearningActivity </b>
+</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LearningActivity.Description)
+    </div>
+
+    @*<div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedBy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedBy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedDate)
+    </div>*@
+
+    @*<div class="editor-field">
+        <table>
+            <tr>
+                @{
+                    int cnt = 0;
+                    var competencys = ViewBag.Competencys;
+
+                    foreach (var competency in competencys)
+                    {
+                        if (cnt++ % 3 == 0)
+                        {
+                            @:</tr><tr>
+                         }
+                        @:<td>
+            <input type="checkbox"
+                   name="selectedCompetencys"
+                   disabled="disabled"
+                   value="@competency.CompetenciesID"
+                   @(Html.Raw(competency.Assigned ? "checked=\"checked\"" : "")) />
+                            @competency.CompetenciesID @:  @competency.Description
+                            @:</td>
+                      }
+                    @:</tr>
+                }
+            </table>
+        </div>*@
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.ProgramLearningActivitiesID  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

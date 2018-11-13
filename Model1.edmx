@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UCTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Competencies">
+          <Key>
+            <PropertyRef Name="CompetenciesID" />
+          </Key>
+          <Property Name="CompetenciesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Competency" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="LearningActivities">
+          <Key>
+            <PropertyRef Name="LearningActivitiesID" />
+          </Key>
+          <Property Name="LearningActivitiesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="ProgramLearningActivities">
+          <Key>
+            <PropertyRef Name="ProgramLearningActivitiesID" />
+          </Key>
+          <Property Name="ProgramLearningActivitiesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgramID" Type="int" Nullable="false" />
+          <Property Name="LearningActivitiesID" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="ProgramLearningActivitiesCompetency">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgramLearningActivitiesID" Type="int" Nullable="false" />
+          <Property Name="ProgramID" Type="int" Nullable="false" />
+          <Property Name="LearningActivitiesID" Type="int" Nullable="false" />
+          <Property Name="CompetenciesID" Type="int" Nullable="false" />
+          <Property Name="LearningYear" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Programs">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="IsApproved" Type="bit" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="ProgramID" Type="int" />
+        </EntityType>
+        <EntityType Name="UserProgram">
+          <Key>
+            <PropertyRef Name="UserProgramID" />
+          </Key>
+          <Property Name="UserProgramID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProgramID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsConfirmed" Type="bit" />
+          <Property Name="LastPasswordFailureDate" Type="datetime" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordChangedDate" Type="datetime" />
+          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ProviderUserId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_LearningActivitiesCompetency_ProgramLearningActivities">
+          <End Role="ProgramLearningActivities" Type="Self.ProgramLearningActivities" Multiplicity="1" />
+          <End Role="ProgramLearningActivitiesCompetency" Type="Self.ProgramLearningActivitiesCompetency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgramLearningActivities">
+              <PropertyRef Name="ProgramLearningActivitiesID" />
+            </Principal>
+            <Dependent Role="ProgramLearningActivitiesCompetency">
+              <PropertyRef Name="ProgramLearningActivitiesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProgramLearningActivities_LearningActivities">
+          <End Role="LearningActivities" Type="Self.LearningActivities" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProgramLearningActivities" Type="Self.ProgramLearningActivities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LearningActivities">
+              <PropertyRef Name="LearningActivitiesID" />
+            </Principal>
+            <Dependent Role="ProgramLearningActivities">
+              <PropertyRef Name="LearningActivitiesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProgramLearningActivities_Programs">
+          <End Role="Programs" Type="Self.Programs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProgramLearningActivities" Type="Self.ProgramLearningActivities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="ProgramID" />
+            </Principal>
+            <Dependent Role="ProgramLearningActivities">
+              <PropertyRef Name="ProgramID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProgramLearningActivitiesCompetency_ProgramLearningActivities">
+          <End Role="ProgramLearningActivities" Type="Self.ProgramLearningActivities" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProgramLearningActivitiesCompetency" Type="Self.ProgramLearningActivitiesCompetency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgramLearningActivities">
+              <PropertyRef Name="ProgramLearningActivitiesID" />
+            </Principal>
+            <Dependent Role="ProgramLearningActivitiesCompetency">
+              <PropertyRef Name="ProgramLearningActivitiesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleId">
+          <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserId">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UCTModelStoreContainer">
+          <EntitySet Name="Competencies" EntityType="Self.Competencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LearningActivities" EntityType="Self.LearningActivities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramLearningActivities" EntityType="Self.ProgramLearningActivities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramLearningActivitiesCompetency" EntityType="Self.ProgramLearningActivitiesCompetency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProgram" EntityType="Self.UserProgram" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LearningActivitiesCompetency_ProgramLearningActivities" Association="Self.FK_LearningActivitiesCompetency_ProgramLearningActivities">
+            <End Role="ProgramLearningActivities" EntitySet="ProgramLearningActivities" />
+            <End Role="ProgramLearningActivitiesCompetency" EntitySet="ProgramLearningActivitiesCompetency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProgramLearningActivities_LearningActivities" Association="Self.FK_ProgramLearningActivities_LearningActivities">
+            <End Role="LearningActivities" EntitySet="LearningActivities" />
+            <End Role="ProgramLearningActivities" EntitySet="ProgramLearningActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProgramLearningActivities_Programs" Association="Self.FK_ProgramLearningActivities_Programs">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="ProgramLearningActivities" EntitySet="ProgramLearningActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProgramLearningActivitiesCompetency_ProgramLearningActivities" Association="Self.FK_ProgramLearningActivitiesCompetency_ProgramLearningActivities">
+            <End Role="ProgramLearningActivities" EntitySet="ProgramLearningActivities" />
+            <End Role="ProgramLearningActivitiesCompetency" EntitySet="ProgramLearningActivitiesCompetency" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleId" Association="Self.fk_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserId" Association="Self.fk_UserId">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UCTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Competency">
+          <Key>
+            <PropertyRef Name="CompetenciesID" />
+          </Key>
+          <Property Name="CompetenciesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Competency1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="LearningActivity">
+          <Key>
+            <PropertyRef Name="LearningActivitiesID" />
+          </Key>
+          <Property Name="LearningActivitiesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ProgramLearningActivities" Relationship="Self.FK_ProgramLearningActivities_LearningActivities" FromRole="LearningActivities" ToRole="ProgramLearningActivities" />
+        </EntityType>
+        <EntityType Name="ProgramLearningActivity">
+          <Key>
+            <PropertyRef Name="ProgramLearningActivitiesID" />
+          </Key>
+          <Property Name="ProgramLearningActivitiesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramID" Type="Int32" Nullable="false" />
+          <Property Name="LearningActivitiesID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="LearningActivity" Relationship="Self.FK_ProgramLearningActivities_LearningActivities" FromRole="ProgramLearningActivities" ToRole="LearningActivities" />
+          <NavigationProperty Name="Program" Relationship="Self.FK_ProgramLearningActivities_Programs" FromRole="ProgramLearningActivities" ToRole="Programs" />
+          <NavigationProperty Name="ProgramLearningActivitiesCompetency" Relationship="UCTModel.FK_LearningActivitiesCompetency_ProgramLearningActivities" FromRole="ProgramLearningActivity" ToRole="ProgramLearningActivitiesCompetency" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ProgramLearningActivities" Relationship="Self.FK_ProgramLearningActivities_Programs" FromRole="Programs" ToRole="ProgramLearningActivities" />
+        </EntityType>
+        <EntityType Name="UserProgram">
+          <Key>
+            <PropertyRef Name="UserProgramID" />
+          </Key>
+          <Property Name="UserProgramID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ProgramID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProgramLearningActivities_LearningActivities">
+          <End Role="LearningActivities" Type="Self.LearningActivity" Multiplicity="1" />
+          <End Role="ProgramLearningActivities" Type="Self.ProgramLearningActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LearningActivities">
+              <PropertyRef Name="LearningActivitiesID" />
+            </Principal>
+            <Dependent Role="ProgramLearningActivities">
+              <PropertyRef Name="LearningActivitiesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProgramLearningActivities_Programs">
+          <End Role="Programs" Type="Self.Program" Multiplicity="1" />
+          <End Role="ProgramLearningActivities" Type="Self.ProgramLearningActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="ProgramID" />
+            </Principal>
+            <Dependent Role="ProgramLearningActivities">
+              <PropertyRef Name="ProgramID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UCTEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Competencies" EntityType="Self.Competency" />
+          <EntitySet Name="LearningActivities" EntityType="Self.LearningActivity" />
+          <EntitySet Name="ProgramLearningActivities" EntityType="Self.ProgramLearningActivity" />
+          <EntitySet Name="Programs" EntityType="Self.Program" />
+          <EntitySet Name="UserPrograms" EntityType="Self.UserProgram" />
+          <AssociationSet Name="FK_ProgramLearningActivities_LearningActivities" Association="Self.FK_ProgramLearningActivities_LearningActivities">
+            <End Role="LearningActivities" EntitySet="LearningActivities" />
+            <End Role="ProgramLearningActivities" EntitySet="ProgramLearningActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProgramLearningActivities_Programs" Association="Self.FK_ProgramLearningActivities_Programs">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="ProgramLearningActivities" EntitySet="ProgramLearningActivities" />
+          </AssociationSet>
+          <EntitySet Name="ProgramLearningActivitiesCompetency" EntityType="UCTModel.ProgramLearningActivitiesCompetency" />
+          <AssociationSet Name="FK_LearningActivitiesCompetency_ProgramLearningActivities" Association="UCTModel.FK_LearningActivitiesCompetency_ProgramLearningActivities">
+            <End Role="ProgramLearningActivity" EntitySet="ProgramLearningActivities" />
+            <End Role="ProgramLearningActivitiesCompetency" EntitySet="ProgramLearningActivitiesCompetency" />
+          </AssociationSet>
+          <EntitySet Name="Roles" EntityType="UCTModel.Roles" />
+          <EntitySet Name="UserProfile" EntityType="UCTModel.UserProfile" />
+          <EntitySet Name="webpages_Membership" EntityType="UCTModel.webpages_Membership" />
+          <EntitySet Name="webpages_Roles" EntityType="UCTModel.webpages_Roles" />
+          <AssociationSet Name="webpages_UsersInRoles" Association="UCTModel.webpages_UsersInRoles">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ProgramLearningActivitiesCompetency">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramLearningActivitiesID" Type="Int32" Nullable="false" />
+          <Property Name="ProgramID" Type="Int32" Nullable="false" />
+          <Property Name="LearningActivitiesID" Type="Int32" Nullable="false" />
+          <Property Name="CompetenciesID" Type="Int32" Nullable="false" />
+          <Property Name="LearningYear" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ProgramLearningActivities" Relationship="UCTModel.FK_LearningActivitiesCompetency_ProgramLearningActivities" FromRole="ProgramLearningActivitiesCompetency" ToRole="ProgramLearningActivity" />
+        </EntityType>
+        <Association Name="FK_LearningActivitiesCompetency_ProgramLearningActivities">
+          <End Type="UCTModel.ProgramLearningActivity" Role="ProgramLearningActivity" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="UCTModel.ProgramLearningActivitiesCompetency" Role="ProgramLearningActivitiesCompetency" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="ProgramLearningActivity">
+              <PropertyRef Name="ProgramLearningActivitiesID" />
+            </Principal>
+            <Dependent Role="ProgramLearningActivitiesCompetency">
+              <PropertyRef Name="ProgramLearningActivitiesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProgramID" Type="Int32" />
+          <NavigationProperty Name="webpages_Roles" Relationship="UCTModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsConfirmed" Type="Boolean" />
+          <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserProfile" Relationship="UCTModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="webpages_UsersInRoles">
+          <End Type="UCTModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
+          <End Type="UCTModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UCTModelStoreContainer" CdmEntityContainer="UCTEntities1">
+          <EntitySetMapping Name="Competencies">
+            <EntityTypeMapping TypeName="UCTModel.Competency">
+              <MappingFragment StoreEntitySet="Competencies">
+                <ScalarProperty Name="CompetenciesID" ColumnName="CompetenciesID" />
+                <ScalarProperty Name="Competency1" ColumnName="Competency" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LearningActivities">
+            <EntityTypeMapping TypeName="UCTModel.LearningActivity">
+              <MappingFragment StoreEntitySet="LearningActivities">
+                <ScalarProperty Name="LearningActivitiesID" ColumnName="LearningActivitiesID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramLearningActivities">
+            <EntityTypeMapping TypeName="UCTModel.ProgramLearningActivity">
+              <MappingFragment StoreEntitySet="ProgramLearningActivities">
+                <ScalarProperty Name="ProgramLearningActivitiesID" ColumnName="ProgramLearningActivitiesID" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="LearningActivitiesID" ColumnName="LearningActivitiesID" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="UCTModel.Program">
+              <MappingFragment StoreEntitySet="Programs">
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPrograms">
+            <EntityTypeMapping TypeName="UCTModel.UserProgram">
+              <MappingFragment StoreEntitySet="UserProgram">
+                <ScalarProperty Name="UserProgramID" ColumnName="UserProgramID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramLearningActivitiesCompetency">
+            <EntityTypeMapping TypeName="UCTModel.ProgramLearningActivitiesCompetency">
+              <MappingFragment StoreEntitySet="ProgramLearningActivitiesCompetency">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LearningYear" ColumnName="LearningYear" />
+                <ScalarProperty Name="CompetenciesID" ColumnName="CompetenciesID" />
+                <ScalarProperty Name="LearningActivitiesID" ColumnName="LearningActivitiesID" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="ProgramLearningActivitiesID" ColumnName="ProgramLearningActivitiesID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="UCTModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfile">
+            <EntityTypeMapping TypeName="UCTModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Membership">
+            <EntityTypeMapping TypeName="UCTModel.webpages_Membership">
+              <MappingFragment StoreEntitySet="webpages_Membership">
+                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="UCTModel.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="UCTModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="webpages_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

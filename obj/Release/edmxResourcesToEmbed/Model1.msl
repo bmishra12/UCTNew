@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UCTModelStoreContainer" CdmEntityContainer="UCTEntities1">
+    <EntitySetMapping Name="Competencies">
+      <EntityTypeMapping TypeName="UCTModel.Competency">
+        <MappingFragment StoreEntitySet="Competencies">
+          <ScalarProperty Name="CompetenciesID" ColumnName="CompetenciesID" />
+          <ScalarProperty Name="Competency1" ColumnName="Competency" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LearningActivities">
+      <EntityTypeMapping TypeName="UCTModel.LearningActivity">
+        <MappingFragment StoreEntitySet="LearningActivities">
+          <ScalarProperty Name="LearningActivitiesID" ColumnName="LearningActivitiesID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramLearningActivities">
+      <EntityTypeMapping TypeName="UCTModel.ProgramLearningActivity">
+        <MappingFragment StoreEntitySet="ProgramLearningActivities">
+          <ScalarProperty Name="ProgramLearningActivitiesID" ColumnName="ProgramLearningActivitiesID" />
+          <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+          <ScalarProperty Name="LearningActivitiesID" ColumnName="LearningActivitiesID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programs">
+      <EntityTypeMapping TypeName="UCTModel.Program">
+        <MappingFragment StoreEntitySet="Programs">
+          <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserPrograms">
+      <EntityTypeMapping TypeName="UCTModel.UserProgram">
+        <MappingFragment StoreEntitySet="UserProgram">
+          <ScalarProperty Name="UserProgramID" ColumnName="UserProgramID" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramLearningActivitiesCompetency">
+      <EntityTypeMapping TypeName="UCTModel.ProgramLearningActivitiesCompetency">
+        <MappingFragment StoreEntitySet="ProgramLearningActivitiesCompetency">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="LearningYear" ColumnName="LearningYear" />
+          <ScalarProperty Name="CompetenciesID" ColumnName="CompetenciesID" />
+          <ScalarProperty Name="LearningActivitiesID" ColumnName="LearningActivitiesID" />
+          <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+          <ScalarProperty Name="ProgramLearningActivitiesID" ColumnName="ProgramLearningActivitiesID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
